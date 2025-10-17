@@ -15,14 +15,15 @@ pipeline {
         }
 
         stage('update Vue deploy.yaml') {
-
-            steps {
-                // Jenkins 파이프라인에서 작업 디렉터리를 변경할 때 사용한다.
-                sh 'pwd'
-                sh 'ls -al'
-                echo "Received Docker Image Version : ${params.DOCKER_IMAGE_VERSION}"
-                sh "sed -i 's|kimeodml/specguard-frontend:.*|kimeodml/specguard-frontend:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
-                sh 'cat deploy.yaml'
+            dir('specguard-frontend') {
+                steps {
+                    // Jenkins 파이프라인에서 작업 디렉터리를 변경할 때 사용한다.
+                    sh 'pwd'
+                    sh 'ls -al'
+                    echo "Received Docker Image Version : ${params.DOCKER_IMAGE_VERSION}"
+                    sh "sed -i 's|kimeodml/specguard-frontend:.*|kimeodml/specguard-frontend:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
+                    sh 'cat deploy.yaml'
+                }
             }
         }
 
