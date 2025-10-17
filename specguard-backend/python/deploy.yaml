@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: specguard-nlp
+  namespace: specguard
+  labels:
+    app: specguard-nlp
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: specguard-nlp
+  template:
+    metadata:
+      labels:
+        app: specguard-nlp
+    spec:
+      containers:
+      - name: specguard-nlp
+        image: viroovr/specguard-nlp:2
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "500m"
+          limits:
+            memory: "256Mi"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8000
+        envFrom:
+          - configMapRef:
+              name: backend-config
+          - secretRef:
+              name: backend-secrets
