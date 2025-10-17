@@ -24,6 +24,7 @@ pipeline {
                     sh "sed -i 's|kimeodml/specguard-frontend:.*|kimeodml/specguard-frontend:${params.DOCKER_IMAGE_VERSION}|g' deploy.yaml"
                     sh 'cat deploy.yaml'
                 }
+            }
         }
 
         stage('Commit & Push') {
