@@ -5,7 +5,7 @@ metadata:
 spec:
   type: ClusterIP
   selector:
-    app: specguard-nlp
+    app: specguard-nlp-api
   ports:
   - name: specguard-nlp-port
     port: 8000

@@ -1,23 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: specguard-nlp
-  namespace: specguard
-  labels:
-    app: specguard-nlp
+  name: specguard-nlp-deploy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: specguard-nlp
+      app: specguard-nlp-api
   template:
     metadata:
       labels:
-        app: specguard-nlp
+        app: specguard-nlp-api
     spec:
       containers:
       - name: specguard-nlp
-        image: viroovr/specguard-nlp:2
+        image: viroovr/specguard-nlp:1.0
         resources:
           requests:
             memory: "128Mi"
