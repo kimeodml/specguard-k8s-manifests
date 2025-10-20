@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: specguard-frontend
-        image: kimeodml/specguard-frontend:5
+        image: kimeodml/specguard-frontend:d0fe3ce2b79a79d1ce4b47633a2d6a5970b771c9
         resources:
           requests:
             memory: "128Mi"
