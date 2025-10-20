@@ -30,11 +30,11 @@ pipeline {
         stage('Commit & Push') {
             steps {
                 sh 'git config --list'
-                sh 'git config user.name "kimeodml"'
-                sh 'git config user.email "kimeodml@gmail.com"'
+                sh 'git config user.name "jenkins"'
+                sh 'git config user.email "jenkins@beyond.com"'
                 sh 'git config --list'
                 sh "git add ."
-                sh "git commit -m 'Update Image Version ${params.DOCKER_IMAGE_VERSION}'"
+                sh "git commit -m '[Auto] update image version ${params.DOCKER_IMAGE_VERSION}'"
                 sh 'git status'
 
                 sshagent(['specguard-k8s-manifests']) {
