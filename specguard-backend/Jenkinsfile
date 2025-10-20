@@ -69,13 +69,21 @@ pipeline {
                 sh 'git config --list'
                 sh 'git config user.name "jenkins"'
                 sh 'git config user.email "jenkins@beyond.com"'
-                sh 'git config --list'
-                sh 'git add .'
-                sh "git commit -m '[Auto] update image version ${params.DOCKER_IMAGE_VERSION}'"
-                sh 'git status'
 
-                sshagent(['specguard-k8s-manifests']) {
-                    sh 'git push'
+            // 변경된 파일 있는지 확인
+            script {
+                def changes = sh(script: "git status --porcelain", returnStdout: true).trim()
+                if (changes) {
+                    echo "🔹 변경 사항 감지됨 → 커밋 및 푸시 실행"
+
+                    sh 'git add .'
+                    sh "git commit -m '[Auto] update image version ${params.DOCKER_IMAGE_VERSION}'"
+                    
+                    sshagent(['specguard-k8s-manifests']) {
+                        sh 'git push origin main'
+                    }
+                } else {
+                    echo "⚪ 변경 사항 없음 → 커밋/푸시 생략"
                 }
             }
         }
