@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: specguard-api
-        image: viroovr/specguard-api:3
+        image: viroovr/specguard-api:1
         resources:
           requests:
             memory: "512Mi"
