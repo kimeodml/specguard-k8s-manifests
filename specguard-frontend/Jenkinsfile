@@ -28,6 +28,12 @@ pipeline {
         }
 
         stage('Commit & Push') {
+            when {
+                expression {
+                    return params.DID_BUILD_APP == "true"
+                }
+            }
+            
             steps {
                 sh 'git config --list'
                 sh 'git config user.name "jenkins"'
