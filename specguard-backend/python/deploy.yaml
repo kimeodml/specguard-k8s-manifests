@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: specguard-nlp
-        image: viroovr/specguard-nlp:a4e574ac6c71779d32d09fb4a027716360068329
+        image: viroovr/specguard-nlp:ebfc6983020b6a5682f7cee9f05f64ef04e3a1b9
         resources:
           requests:
             memory: "128Mi"
